@@ -5,30 +5,18 @@ const cors = require("cors");
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log("INCOMING:", req.method, req.url);
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  res.header("Access-Control-Allow-Methods", "*");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
+// ✅ CORS (final working setup)
+app.use(cors({
+  origin: "http://127.0.0.1:5500",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 app.use((req, res, next) => {
   console.log("HIT:", req.method, req.url);
   next();
 });
 
-// ✅ CORS (final working setup)
-// app.use(cors({
-//   origin: "http://127.0.0.1:5500",
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization"]
-// }));
 
 // ✅ Body parser
 app.use(express.json());
