@@ -2,23 +2,46 @@ const API = "https://e-commerce-backend-fr7k.onrender.com/api";
 
 
 // ---------------- REGISTER ----------------
-document.getElementById("registerBtn").addEventListener("click", register);
+async function register() {
+  try {
+    console.log("Register clicked");
 
-async function register(event) {
-  event.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+    const res = await fetch(API + "/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, password })
+    });
 
-  const res = await fetch(API + "/auth/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, email, password })
-  });
+    const text = await res.text();
+    console.log("RAW RESPONSE:", text);
 
-  const data = await res.json();
-  console.log(data);
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.error("Not JSON response:", text);
+      alert("Server error (invalid response)");
+      return;
+    }
+
+    console.log("Parsed:", data);
+
+    if (!res.ok) {
+      alert(data.msg || "Registration failed");
+      return;
+    }
+
+    alert("Registered successfully");
+  } catch (err) {
+    console.error("Error:", err);
+    alert("Server error. Check console.");
+  }
 }
 
 
