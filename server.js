@@ -9,9 +9,13 @@ const app = express();
 // ✅ CORS (final working setup)
 app.use(cors({
   origin: "http://127.0.0.1:5500",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+app.options("*", (req, res) => {
+  res.sendStatus(200);
+});
 
 // ✅ Body parser
 app.use(express.json());
