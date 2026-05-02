@@ -6,6 +6,19 @@ const cors = require("cors");
 const app = express();
 
 app.use((req, res, next) => {
+  console.log("INCOMING:", req.method, req.url);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Methods", "*");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
+app.use((req, res, next) => {
   console.log("HIT:", req.method, req.url);
   next();
 });
