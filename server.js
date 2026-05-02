@@ -24,11 +24,11 @@ app.use((req, res, next) => {
 });
 
 // ✅ CORS (final working setup)
-app.use(cors({
-  origin: "http://127.0.0.1:5500",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+// app.use(cors({
+//   origin: "http://127.0.0.1:5500",
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"]
+// }));
 
 // ✅ Body parser
 app.use(express.json());
