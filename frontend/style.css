@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+input {
+  margin: 5px 0;
+  padding: 8px;
+  width: 200px;
+}
+
+button {
+  margin: 10px 0;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#products div, #cart div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
