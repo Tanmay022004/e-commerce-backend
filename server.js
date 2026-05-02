@@ -13,10 +13,6 @@ app.use(cors({
   credentials: true
 }));
 
-// ✅ Handle preflight requests
-app.options("*", cors());
-
-
 // ✅ Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
