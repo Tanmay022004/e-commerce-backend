@@ -21,7 +21,11 @@ app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+<<<<<<< HEAD
 // ✅ Routes
+=======
+// Routes FIRST
+>>>>>>> e4b265ebb839f3ca29bdc764ead49a5e2eee6d39
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/cart", require("./routes/cartRoutes"));
@@ -29,13 +33,21 @@ app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/payment", require("./routes/paymentRoutes"));
 
+<<<<<<< HEAD
 
 // ✅ Test route
+=======
+// Test route
+>>>>>>> e4b265ebb839f3ca29bdc764ead49a5e2eee6d39
 app.get("/test", (req, res) => {
   res.json({ ok: true });
 });
 
+<<<<<<< HEAD
 // ✅ Root route
+=======
+// Root route
+>>>>>>> e4b265ebb839f3ca29bdc764ead49a5e2eee6d39
 app.get("/", (req, res) => {
   res.json({
     message: "E-commerce Backend API",
@@ -43,6 +55,7 @@ app.get("/", (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 
 // ✅ DB connect
 mongoose.connect(process.env.MONGO_URI)
@@ -58,3 +71,15 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });
+=======
+// DB connect
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log("DB Connected"))
+.catch(err => console.log(err));
+
+// SINGLE listen ONLY
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
+});
+>>>>>>> e4b265ebb839f3ca29bdc764ead49a5e2eee6d39
